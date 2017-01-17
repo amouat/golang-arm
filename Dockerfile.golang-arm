@@ -1,4 +1,5 @@
-FROM amouat/debian-multi
+#FROM amouat/debian-multi
+FROM armhf/debian
 
 # gcc for cgo
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -11,6 +12,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		make \
 		pkg-config \
 	&& rm -rf /var/lib/apt/lists/*
+
+COPY qemu-arm-static /usr/bin/qemu-arm-static
 
 ENV GOLANG_VERSION 1.7.4
 ENV GOLANG_DOWNLOAD_URL https://storage.googleapis.com/golang/go$GOLANG_VERSION.linux-armv6l.tar.gz
